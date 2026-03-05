@@ -1,0 +1,140 @@
+================================================================================
+YouTube Downloader - Configuration File
+================================================================================
+
+PURPOSE:
+This configuration file allows you to customize yt-dlp behavior on your system.
+Copy this file to %APPDATA% folder and customize it to fix common audio issues.
+
+WINDOWS SETUP:
+1. Press Win + R, type: %APPDATA%
+2. Create a folder named "yt-dlp" (if it doesn't exist)
+3. Copy this file to: %APPDATA%\yt-dlp\config.txt
+4. Edit the options below as needed
+5. Restart your downloader application
+
+================================================================================
+AUDIO CODEC CONFIGURATION (Fixes Opus Audio Issues)
+================================================================================
+
+# OPTION 1: Prefer M4A Audio (RECOMMENDED for MP4 output)
+# This avoids Opus codec issues in browser playback
+# Use this format when downloading as MP4
+# Uncomment the line below:
+
+# --audio-format m4a
+# --audio-quality 192
+
+# OPTION 2: Prefer AAC Audio (Alternative)
+# Good for general compatibility
+# Uncomment the line below:
+
+# --audio-format aac
+# --audio-quality 192
+
+# OPTION 3: Prefer OPUS Audio (If system supports it)
+# This is the default, but may cause playback issues in some browsers
+# Uncomment the line below:
+
+# --audio-format opus
+# --audio-quality 192
+
+================================================================================
+VIDEO QUALITY CONFIGURATION
+================================================================================
+
+# Prefer MP4 format for better compatibility
+--prefer-ffmpeg
+
+# Use FFmpeg for post-processing
+--ffmpeg-location C:\ffmpeg\bin
+
+# Preferred extension
+--remux-video mp4
+
+================================================================================
+FILE NAMING AND OUTPUT
+================================================================================
+
+# Save with the video title as filename
+--output "%(title)s.%(ext)s"
+
+# Avoid special characters that Windows doesn't like
+--restrict-filenames
+
+# Windows: Uncomment to save to a specific folder
+# --output-na-placeholder "Unknown"
+
+================================================================================
+PERFORMANCE AND LOGGING
+================================================================================
+
+# Suppress verbose output (less clutter)
+# --quiet
+
+# Show progress
+--progress
+
+# Timeout for network requests (in seconds)
+# --socket-timeout 30
+
+================================================================================
+TROUBLESHOOTING SPECIFIC ISSUES
+================================================================================
+
+# ISSUE: "Opus audio codec not supported in MP4"
+# SOLUTION: Enable M4A audio format (see AUDIO CODEC CONFIGURATION above)
+# --audio-format m4a
+
+# ISSUE: "FFmpeg not found"
+# SOLUTION: Specify the exact path to ffmpeg
+# --ffmpeg-location "C:\Program Files\FFmpeg\bin"
+
+# ISSUE: "Video download fails with timeout"
+# SOLUTION: Increase socket timeout
+# --socket-timeout 60
+# --retries 3
+
+# ISSUE: "Some formats not available"
+# SOLUTION: Enable listing all available formats
+# --list-formats
+
+================================================================================
+ADVANCED OPTIONS
+================================================================================
+
+# Keep intermediate files from download
+# --keep-fragments
+
+# Calculate video hash for verification
+# --no-check-certificate
+
+# Use IPv4 only (if IPv6 causes issues)
+# --socket-family 4
+
+# Set HTTP proxy if needed
+# --proxy [PROXY_URL]
+
+# Cookie file for authenticated downloads
+# --cookies-from-browser firefox
+
+================================================================================
+REFERENCE
+================================================================================
+
+For complete documentation, visit:
+https://github.com/yt-dlp/yt-dlp#configuration
+
+Common audio formats:
+- m4a     : AAC audio (recommended for MP4)
+- aac     : Advanced Audio Coding
+- opus    : Opus audio (default, may have compatibility issues)
+- vorbis  : Vorbis audio
+- wav     : Uncompressed audio (large files)
+
+Audio quality:
+- 192     : High quality (kbps)
+- 128     : Medium quality
+- 64      : Low quality
+
+================================================================================
