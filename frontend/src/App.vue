@@ -155,7 +155,7 @@
             <div v-if="downloading" class="mt-6">
               <div class="flex justify-between text-sm text-gray-300 mb-2">
                 <span>Download Progress</span>
-                <span>{{ downloadProgress }}%</span>
+                <span>{{ formattedDownloadProgress }}%</span>
               </div>
               <div class="w-full bg-gray-700/50 rounded-full h-2 overflow-hidden">
                 <div
@@ -233,7 +233,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import axios from 'axios'
 
 const API_BASE_URL = 'http://127.0.0.1:8000'
@@ -248,6 +248,7 @@ const error = ref('')
 const downloadProgress = ref(0)
 const downloadSuccess = ref('')
 const downloadHistory = ref([])
+const formattedDownloadProgress = computed(() => downloadProgress.value.toFixed(2))
 
 // Load history from localStorage
 onMounted(() => {
